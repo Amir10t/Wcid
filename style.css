@@ -1,0 +1,49 @@
+* {font-family: Vazir;}
+
+/* Question */
+#question {
+    text-align: center;
+}
+
+/* Answers */
+
+.answer {
+    width: 45%;
+    margin-left: 2.5%;
+    margin-bottom: 0.5%;
+    text-align: center;
+    background-color: white;
+    border: 2px solid greenyellow;
+    border-radius: 20px;
+    font-size: x-large;
+}
+
+.answer:hover {
+    background-color: greenyellow;
+}
+.answer a {
+    text-decoration: none;
+    color: green;
+}
+
+/* skip button */
+#skip {
+    display: block;
+    width: 30%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: palevioletred;
+    font-size: large;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+#skip:hover {
+    color: gainsboro;
+    background-color: pink;
+}
+#skip a {
+    text-decoration: none;
+    color: white;
+}
