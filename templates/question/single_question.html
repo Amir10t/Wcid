@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="../../static/css/style.css">
 </head>
 <body>
-    <h2 id="question">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus deserunt sit 
-        eius tenetur, aliquam dolorem hic esse saepe sapiente incidunt.</h2>
-    <button class="answer"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, inventore?</a></button>
-    <button class="answer"><a href="#">1 Test</a></button>
-    <button class="answer"><a href="#">1 Test</a></button>
-    <button class="answer"><a href="#">1 Test</a></button>
+    <h2 id="question">{{ quiz.question }}</h2>
+    <button class="answer"><a href="#">{{ quiz.option1 }}</a></button>
+    <button class="answer"><a href="#">{{ quiz.option2 }}</a></button>
+    <button class="answer"><a href="#">{{ quiz.option3 }}</a></button>
+    <button class="answer"><a href="#">{{ quiz.option4 }}</a></button>
     <button id="skip"><a href="#">علاقه ای به این موضوع ندارم</a></button>
 </body>
 </html>
