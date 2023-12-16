@@ -13,6 +13,8 @@ def question(request, id):
 def check(request, id):
     questions = QuestionModel.objects.all()
     question=questions.get(id=id)
-    temmate = QuestionCategoryModel.objects.filter(question_category=question.category)
+    temmate = QuestionModel.objects.filter(category=question.category)
     new_question = temmate[randint(0,(len(temmate)-1))]
+    while new_question == question:
+        new_question = temmate[randint(0,(len(temmate)-1))]
     return HttpResponse(new_question)
