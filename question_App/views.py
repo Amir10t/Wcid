@@ -1,5 +1,7 @@
+from builtins import id
+
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import QuestionModel, QuestionCategoryModel
 from random import randint
 
@@ -8,7 +10,11 @@ from random import randint
 def question(request, id):
     questions = QuestionModel.objects.all()
     question=questions.get(id=id)
-    return render(request, "question/single_question.html", {"quiz":question})
+    context = {
+        "quiz":question,
+        "not_interested_id":len(questions)+10
+    }
+    return render(request, "question/single_question.html", context)
 
 def check(request, id):
     questions = QuestionModel.objects.all()
@@ -17,4 +23,5 @@ def check(request, id):
     new_question = temmate[randint(0,(len(temmate)-1))]
     while new_question == question:
         new_question = temmate[randint(0,(len(temmate)-1))]
-    return HttpResponse(new_question)
+    url_question = reverse("single-question",args=[new_question.id])
+    return redirect(url_question)

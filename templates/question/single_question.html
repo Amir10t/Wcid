@@ -8,10 +8,10 @@
 </head>
 <body>
     <h2 id="question">{{ quiz.question }}</h2>
-    <button class="answer"><a href="#">{{ quiz.option1 }}</a></button>
-    <button class="answer"><a href="#">{{ quiz.option2 }}</a></button>
-    <button class="answer"><a href="#">{{ quiz.option3 }}</a></button>
-    <button class="answer"><a href="#">{{ quiz.option4 }}</a></button>
-    <button id="skip"><a href="#">علاقه ای به این موضوع ندارم</a></button>
+    <button class="answer"><a href="{% url "check-question" id=quiz.id %}">{{ quiz.option1 }}</a></button>
+    <button class="answer"><a href="{% url "check-question" id=quiz.id %}">{{ quiz.option2 }}</a></button>
+    <button class="answer"><a href="{% url "check-question" id=quiz.id %}">{{ quiz.option3 }}</a></button>
+    <button class="answer"><a href="{% url "check-question" id=quiz.id %}">{{ quiz.option4 }}</a></button>
+    <button id="skip"><a href="{% url "check-question" id=not_interested_id %}">علاقه ای به {{ quiz.category.title }} ندارم</a></button>
 </body>
 </html>
