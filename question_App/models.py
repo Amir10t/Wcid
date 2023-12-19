@@ -11,7 +11,7 @@ class QuestionCategoryModel(models.Model):
 
     class Meta:
         verbose_name = "دسته بندی"
-        verbose_name_plural = "دیسته بندی ها"
+        verbose_name_plural = "دسته بندی ها"
 
 class QuestionModel(models.Model):
     question = models.CharField(max_length=300, verbose_name="سوال")
