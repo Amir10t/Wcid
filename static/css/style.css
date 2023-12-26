@@ -52,7 +52,7 @@
 
 /* ----------------------------------------------------------------- */
 
-input[type=text], input[type=password] {
+input {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -61,7 +61,7 @@ input[type=text], input[type=password] {
     background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input:focus {
     background-color: #ddd;
     outline: none;
 }
