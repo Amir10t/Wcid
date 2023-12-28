@@ -29,11 +29,11 @@ class RegisterForm(forms.Form):
         ]
     )
 
-    def clean_confirm_password(self):
-        password = self.cleaned_data.get('password')
-        confirm_password = self.cleaned_data.get('confirm_password')
-
-        if password == confirm_password:
-            return confirm_password
-
-        raise ValidationError('کلمه عبور و تکرار کلمه عبور مغایرت دارند')
+    # def clean_confirm_password(self):
+    #     password = self.cleaned_data.get('password')
+    #     confirm_password = self.cleaned_data.get('confirm_password')
+    #
+    #     if password == confirm_password:
+    #         return False
+    #
+    #     return True
