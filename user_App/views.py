@@ -23,13 +23,13 @@ class RegisterView(View):
             match_password = str(user_password) != str(user_confirm_password)
             user: bool = User.objects.filter(email__iexact=user_email).exists()
             if user:
-                register_form.add_error('email', 'Repetitious Email')
+                register_form.add_error('email', 'ایمیل وارد شده تکراری می باشد')
                 context = {
                     "register_form": register_form
                 }
                 return render(request, "user/register.html", context)
             elif match_password:
-                register_form.add_error('confirm_password', 'Password is not Match')
+                register_form.add_error('confirm_password', 'گذرواژه با تکرارش مطابقت ندارد')
                 context = {
                     "register_form": register_form
                 }

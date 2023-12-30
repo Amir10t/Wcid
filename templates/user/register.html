@@ -6,40 +6,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/style.css"> 
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>صفحه ساخت حساب کاربری</title>
 </head>
-<body>
-    <form method="post" action="{% url "register" %}" style="border:1px solid #ccc">
-        {% csrf_token %}
-        <div class="container-login">
-          <h1>Sign Up</h1>
-          <p>Please fill in this form to create an account.</p>
-          <hr>
-            {{ register_form.email.label_tag}}
-            {{ register_form.email }}
-            {{ register_form.email.errors }}
-            {{ register_form.password.label_tag}}
-            {{ register_form.password }}
-            {{ register_form.password.errors }}
-            {{ register_form.confirm_password.label_tag }}
-            {{ register_form.confirm_password }}
-            {{ register_form.confirm_password.errors }}
-
-
-          <!-- <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required>
-
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" name="psw-repeat" required> -->
-      
-          <div class="clearfix">
-            <button type="submit" class="signupbtn">Sign Up</button>
-          </div>
-        </div>
-      </form>
+<body id="register">
+        <section class="container">
+            <div class="login-container">
+                <div class="circle circle-one"></div>
+                    <div class="form-container">
+                        <h1 class="opacity">خوش امدید</h1>
+                        <form  method="post" action="{% url "register" %}">
+                            {% csrf_token %}
+{#                            {{ register_form.email.label_tag}}#}
+                            {{ register_form.email }}
+                            {{ register_form.email.errors }}
+{#                            {{ register_form.password.label_tag}}#}
+                            {{ register_form.password }}
+                            {{ register_form.password.errors }}
+{#                            {{ register_form.confirm_password.label_tag }}#}
+                            {{ register_form.confirm_password }}
+                            {{ register_form.confirm_password.errors }}
+                            <button type="submit" class="opacity" style="background-color: red">برو</button>
+                        </form>
+                        <div class="register-forget opacity">
+                            <a href="">ورود</a>
+                            <a href="">به مشکلی بر خورده اید؟</a>
+                        </div>
+                </div>
+                <div class="circle circle-two"></div>
+                </div>
+                <div class="theme-btn-container"></div>
+        </section>
 </body>
 </html>

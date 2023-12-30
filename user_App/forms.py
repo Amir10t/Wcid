@@ -5,9 +5,8 @@ from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.Form):
     email = forms.EmailField(
-        label='EMAIL',
-
-        widget=forms.EmailInput(attrs={'placeholder': 'Email'}),
+        label='ایمیل',
+        widget=forms.EmailInput(attrs={'placeholder': 'ایمیل'}),
         validators=[
             validators.MaxLengthValidator(100),
             validators.EmailValidator,
@@ -15,15 +14,15 @@ class RegisterForm(forms.Form):
         ]
     )
     password = forms.CharField(
-        label='PASSWROD',
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}),
+        label='گذرواژه',
+        widget=forms.PasswordInput(attrs={'placeholder': 'گذرواژه'}),
         validators=[
             validators.MaxLengthValidator(100),
         ]
     )
     confirm_password = forms.CharField(
-        label='CONFIRM PASSWORD',
-        widget=forms.PasswordInput(attrs={'placeholder': 'Conform Password'}),
+        label='تکرار گذرواژه',
+        widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}),
         validators=[
             validators.MaxLengthValidator(100),
         ]
