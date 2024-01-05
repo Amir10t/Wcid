@@ -13,5 +13,8 @@
     <button class="answer"><a href="{% url "check-question" id=quiz.id option=3 %}">{{ quiz.option3 }}</a></button>
     <button class="answer"><a href="{% url "check-question" id=quiz.id option=4 %}">{{ quiz.option4 }}</a></button>
     <button id="skip"><a href="{% url "check-question" id=quiz.id option=5 %}">علاقه ای به {{ quiz.category.title }} ندارم</a></button>
+    {% if show %}
+            <button id="show-btn"><a href="#">نمایش نتیجه</a></button>
+    {% endif %}
 </body>
 </html>

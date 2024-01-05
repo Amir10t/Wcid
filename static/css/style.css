@@ -60,7 +60,26 @@ body {
     color: white;
 }
 
-
+#show-btn {
+    display: block;
+    width: 12%;
+    margin-top: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: limegreen;
+    font-size: large;
+    border: 0px solid white;
+    border-radius: 20px;
+}
+#show-btn:hover {
+    color: gainsboro;
+    background-color: greenyellow;
+}
+#show-btn a {
+    text-decoration: none;
+    color: white;
+}
 
 /* ----------------------------------------------------------------- */
 
