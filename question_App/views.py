@@ -47,14 +47,38 @@ def check(request, id, option):
     else:
         turn += 1
         clicked.append(question.category)
-        correct_clicked.append(None)
         new_question = find_question(question)
     url_question = reverse("single-question",args=[new_question.id])
     return redirect(url_question)
 
-def find_question(question:QuestionModel):
+def show_result(request):
+    if clicked == []: # جلوگیری از ارور
+        favorite = ""
+    else:
+        favorite = most_frequent(clicked)
+    if correct_clicked == []: # جلوگیری از ارور
+        ability = "نامعلوم"
+    else:
+        ability = most_frequent(correct_clicked)
+    return HttpResponse(f" : علاقه ی شما{favorite} : توانایی شما  ------ {ability}")
+
+
+#  -------------- TOOLS :
+
+def find_question(question:QuestionModel): # یک سوال بهش میدی و یک سوال دیگه بهت از همون شاخه میده
     temmate = QuestionModel.objects.filter(category=question.category)
     new_question = temmate[randint(0,(len(temmate)-1))]
     while new_question == question:
         new_question = temmate[randint(0,(len(temmate)-1))]
     return new_question
+
+
+def most_frequent(List:list): # پیدا کردن عضوی بیشتر در مجموعه تکرار شده
+    counter = 0
+    num = List[0]
+    for i in List:
+        curr_frequency = List.count(i)
+        if (curr_frequency > counter):
+            counter = curr_frequency
+            num = i
+    return num

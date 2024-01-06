@@ -7,7 +7,7 @@ class QuestionCategoryModel(models.Model):
     url_title = models.CharField(max_length=50, verbose_name="عنوان انگلیسی")
 
     def __str__(self):
-        return f"{self.title} -> {self.url_title}"
+        return self.title
 
     class Meta:
         verbose_name = "دسته بندی"
