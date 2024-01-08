@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from django.contrib.auth import login, logout
+from .forms import RegisterForm, LoginForm
 from django.http import HttpRequest, HttpResponse
 
 # Create your views here.
@@ -48,3 +49,33 @@ class RegisterView(View):
             "register_form":register_form
         }
         return render(request, "user/register.html", context)
+
+class LoginView(View):
+    def get(self, request):
+        login_form = RegisterForm()
+        context = {
+            "login_form":login_form
+        }
+        return render(request, "user/login.html", context)
+
+    def post(self, request: HttpRequest):
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user_email = login_form.cleaned_data.get('email')
+            user_password = login_form.cleaned_data.get('password')
+            user: User = User.objects.filter(email__iexact=user_email).first()
+            if user is not None:
+                is_password_correct = user.check_password(user_password)
+                if is_password_correct:
+                    login(request, user)
+                    return redirect(reverse('home_page'))
+                else:
+                    login_form.add_error('email', 'کلمه عبور اشتباه است')
+            else:
+                login_form.add_error('email', 'کاربری با مشخصات وارد شده یافت نشد')
+
+        context = {
+            'login_form': login_form
+        }
+
+        return render(request, 'user/login.html', context)

@@ -36,3 +36,21 @@ class RegisterForm(forms.Form):
     #         return False
     #
     #     return True
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label='ایمیل',
+        widget=forms.EmailInput(attrs={'placeholder': 'ایمیل'}),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator,
+            validators.validate_email
+        ]
+    )
+    password = forms.CharField(
+        label='گذرواژه',
+        widget=forms.PasswordInput(attrs={'placeholder': 'گذرواژه'}),
+        validators=[
+            validators.MaxLengthValidator(100),
+        ]
+    )

@@ -5,6 +5,27 @@ li {
 }
 
 /* --------------------------------------- */
+.topnav {
+    overflow: hidden;
+}
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    color: #ddd;
+}
+.topnav a.active {
+    color: red;
+}
+.topnav a.split {
+    float: left;
+}
+/* --------------------------------------- */
 
 * {font-family: Vazir;box-sizing: border-box;}
 
@@ -63,7 +84,7 @@ body {
 #show-btn {
     display: block;
     width: 12%;
-    margin-top: 30%;
+    margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;

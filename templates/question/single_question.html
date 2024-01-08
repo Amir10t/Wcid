@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>چهکاره</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
+{% extends "shared/blank.html" %}
+{% block title %}
+    چهکاره
+{% endblock %}
+{% block content %}
     <h2 id="question">{{ quiz.question }}</h2>
     <button class="answer"><a href="{% url "check-question" id=quiz.id option=1 %}">{{ quiz.option1 }}</a></button>
     <button class="answer"><a href="{% url "check-question" id=quiz.id option=2 %}">{{ quiz.option2 }}</a></button>
@@ -16,5 +12,4 @@
     {% if show %}
             <button id="show-btn"><a href="{% url "show-result" %}">نمایش نتیجه</a></button>
     {% endif %}
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">خانه</a>
+        <a href="#contact">ارتباط با ما</a>
+        <a href="#about">درباره ی ما</a>
+        <a class="split" href="{% url "register" %}">ثبت نام</a>
+        <a class="split" href="#">/</a>
+        <a class="split" href="{% url "login-page" %}">ورود</a>
+    </div>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

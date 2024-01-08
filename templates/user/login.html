@@ -11,22 +11,17 @@
             <div class="login-container">
                 <div class="circle circle-one"></div>
                     <div class="form-container">
-                        <h1 class="opacity">خوش آمدید</h1>
+                        <h1 class="opacity">خوش برگشتید</h1>
                         <form  method="post" action="{% url "register" %}">
                             {% csrf_token %}
-{#                            {{ register_form.email.label_tag}}#}
-                            {{ register_form.email }}
-                            {{ register_form.email.errors }}
-{#                            {{ register_form.password.label_tag}}#}
-                            {{ register_form.password }}
-                            {{ register_form.password.errors }}
-{#                            {{ register_form.confirm_password.label_tag }}#}
-                            {{ register_form.confirm_password }}
-                            {{ register_form.confirm_password.errors }}
-                            <button type="submit" class="opacity" style="background-color: red">برو</button>
+                            {{ login_form.email }}
+                            {{ login_form.email.errors }}
+                            {{ login_form.password }}
+                            {{ login_form.password.errors }}
+                            <button type="submit" class="opacity" style="background-color: red">وارد شو</button>
                         </form>
                         <div class="register-forget opacity">
-                            <a href="{% url "login-page" %}">ورود</a>
+                            <a href="{% url "register" %}">ثبت نام</a>
                             <a href="">به مشکلی بر خورده اید؟</a>
                         </div>
                 </div>
