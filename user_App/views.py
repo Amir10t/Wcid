@@ -38,11 +38,11 @@ class RegisterView(View):
             else:
                 new_user = User(
                     email=user_email,
-                    is_active=False,
+                    is_active=True,
                     username=user_email)
                 new_user.set_password(user_password)
                 new_user.save()
-                return HttpResponse("It\'s Done!")
+                return redirect(reverse("login-page"))
 
         register_form = RegisterForm()
         context = {
@@ -68,7 +68,7 @@ class LoginView(View):
                 is_password_correct = user.check_password(user_password)
                 if is_password_correct:
                     login(request, user)
-                    return redirect(reverse('home_page'))
+                    return redirect(reverse('question'))
                 else:
                     login_form.add_error('email', 'کلمه عبور اشتباه است')
             else:
@@ -79,3 +79,8 @@ class LoginView(View):
         }
 
         return render(request, 'user/login.html', context)
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('question'))

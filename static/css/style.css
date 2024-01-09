@@ -25,6 +25,18 @@ li {
 .topnav a.split {
     float: left;
 }
+.topnav a.logout {
+    color: black;
+}
+.topnav a.admin {
+    color: blueviolet;
+}
+.topnav a.logout:hover {
+    color: red;
+}
+.topnav a.admin:hover {
+    color: mediumpurple;
+}
 /* --------------------------------------- */
 
 * {font-family: Vazir;box-sizing: border-box;}
@@ -100,6 +112,28 @@ body {
 #show-btn a {
     text-decoration: none;
     color: white;
+}
+
+#error-message {
+    text-align: center;
+    color: red;
+}
+.error-btn {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .5%;
+    height: 60px;
+    width: 200px;
+    border: 0px white solid;
+    border-radius: 5%;
+}
+.error-btn a {
+    color: white;
+}
+.error-btn a:hover {
+    color: darkgray;
 }
 
 /* ----------------------------------------------------------------- */

@@ -3,13 +3,19 @@
     چهکاره
 {% endblock %}
 {% block content %}
-    <h2 id="question">{{ quiz.question }}</h2>
-    <button class="answer"><a href="{% url "check-question" id=quiz.id option=1 %}">{{ quiz.option1 }}</a></button>
-    <button class="answer"><a href="{% url "check-question" id=quiz.id option=2 %}">{{ quiz.option2 }}</a></button>
-    <button class="answer"><a href="{% url "check-question" id=quiz.id option=3 %}">{{ quiz.option3 }}</a></button>
-    <button class="answer"><a href="{% url "check-question" id=quiz.id option=4 %}">{{ quiz.option4 }}</a></button>
-    <button id="skip"><a href="{% url "check-question" id=quiz.id option=5 %}">علاقه ای به {{ quiz.category.title }} ندارم</a></button>
-    {% if show %}
-            <button id="show-btn"><a href="{% url "show-result" %}">نمایش نتیجه</a></button>
+    {% if request.user.is_authenticated %}
+        <h2 id="question">{{ quiz.question }}</h2>
+        <button class="answer"><a href="{% url "check-question" id=quiz.id option=1 %}">{{ quiz.option1 }}</a></button>
+        <button class="answer"><a href="{% url "check-question" id=quiz.id option=2 %}">{{ quiz.option2 }}</a></button>
+        <button class="answer"><a href="{% url "check-question" id=quiz.id option=3 %}">{{ quiz.option3 }}</a></button>
+        <button class="answer"><a href="{% url "check-question" id=quiz.id option=4 %}">{{ quiz.option4 }}</a></button>
+        <button id="skip"><a href="{% url "check-question" id=quiz.id option=5 %}">علاقه ای به {{ quiz.category.title }} ندارم</a></button>
+        {% if show %}
+                <button id="show-btn"><a href="{% url "show-result" %}">نمایش نتیجه</a></button>
+        {% endif %}
+    {% else %}
+        <h1 id="error-message">!برای شرکت در ازمون باید حساب کاربری داشته باشید</h1>
+        <button class="error-btn" style="background-color: #dddf00"><a href="{% url "register" %}">ساخت حساب کاربری</a></button>
+        <button class="error-btn" style="background-color: lightgreen"><a href="{% url "login-page" %}">ورود به حساب کاربری</a></button>
     {% endif %}
 {% endblock %}

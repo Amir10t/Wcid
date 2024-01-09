@@ -11,9 +11,17 @@
         <a class="active" href="#home">خانه</a>
         <a href="#contact">ارتباط با ما</a>
         <a href="#about">درباره ی ما</a>
-        <a class="split" href="{% url "register" %}">ثبت نام</a>
-        <a class="split" href="#">/</a>
-        <a class="split" href="{% url "login-page" %}">ورود</a>
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+                <a class="admin" href="/admin"><i></i> پنل ادمین</a>
+            {% endif %}
+            <a class="split logout" href="{% url 'logout-page' %}">خروج</a>
+            <a class="split" href="#"> پنل کاربری</a>
+        {% else %}
+            <a class="split" href="{% url "register" %}">ثبت نام</a>
+            <a class="split" href="#">/</a>
+            <a class="split" href="{% url "login-page" %}">ورود</a>
+        {% endif %}
     </div>
 
     {% block content %}{% endblock %}

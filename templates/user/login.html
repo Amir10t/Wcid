@@ -12,7 +12,7 @@
                 <div class="circle circle-one"></div>
                     <div class="form-container">
                         <h1 class="opacity">خوش برگشتید</h1>
-                        <form  method="post" action="{% url "register" %}">
+                        <form  method="post" action="{% url "login-page" %}">
                             {% csrf_token %}
                             {{ login_form.email }}
                             {{ login_form.email.errors }}
