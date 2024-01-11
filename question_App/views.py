@@ -53,14 +53,25 @@ def check(request, id, option):
 
 def show_result(request):
     if clicked == []: # جلوگیری از ارور
-        favorite = ""
+        favorite = "نامعلوم"
     else:
         favorite = most_frequent(clicked)
     if correct_clicked == []: # جلوگیری از ارور
         ability = "نامعلوم"
     else:
         ability = most_frequent(correct_clicked)
-    return HttpResponse(f" : علاقه ی شما{favorite} : توانایی شما  ------ {ability}")
+    context = {
+        "ability":ability,
+        "favorite":favorite,
+        "len_question":len(clicked)
+    }
+    new_personModel = PersonModel(
+        user=request.user,
+        ability=ability,
+        favorite=favorite
+    )
+    new_personModel.save()
+    return render(request, "question/result.html", context)
 
 
 #  -------------- TOOLS :

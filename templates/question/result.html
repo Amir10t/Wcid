@@ -1,0 +1,15 @@
+{% extends "shared/blank.html" %}
+{% block title %}
+    نمایش نتیجه
+{% endblock %}
+{% block content %}
+    <h1 id="head-result">نتیجه ی آزمون شما به شرح زیر میباشد</h1>
+    <h2 class="h2-result" style="color: red">توانایی شما : {{ ability }}</h2>
+    <h2 class="h2-result" style="color: green">علاقه ی شما : {{ favorite }}</h2>
+    <h3 class="h3-result"> {{ len_question }} : تعداد سوالات پاسخ داده شده </h3>
+    <pre id="text-result">اگر توانایی یا علاقه ی شما همخوانی ندارد
+    .احتمالا به سوالات کمی پاسخ داده اید.پیشنهاد ما این است که تا میتوانید با سوالات درگیر شوید
+    .اگر راهنمای ازمون را هم مطالعه نکرده باشید ممکن است روی نتیحه تاثیر گذاشته باشد</pre>
+    <button class="btn-result" style="background-color: lightgreen"><a href="#">بازگشت به صفحه ی اصلی</a></button>
+    <button class="btn-result" style="background-color: greenyellow"><a href="{% url "question" %}">آزمون مجدد</a></button>
+{% endblock %}

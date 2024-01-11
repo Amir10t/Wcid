@@ -135,7 +135,37 @@ body {
 .error-btn a:hover {
     color: darkgray;
 }
-
+/* ----------------------------------------------------------------- */
+#head-result {
+    text-align: center;
+}
+.h2-result {
+    text-align: center;
+}
+.h3-result {
+    text-align: center;
+}
+#text-result {
+    text-align: center;
+    color: mediumvioletred;
+}
+.btn-result {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .5%;
+    height: 60px;
+    width: 200px;
+    border: 0px white solid;
+    border-radius: 5%;
+}
+.btn-result a {
+    color: white;
+}
+.btn-result a:hover {
+    color: darkgray;
+}
 /* ----------------------------------------------------------------- */
 
 :root {
