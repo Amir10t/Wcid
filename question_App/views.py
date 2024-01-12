@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from .models import QuestionModel, QuestionCategoryModel
 from user_App.models import PersonModel
 from random import randint
@@ -8,6 +8,7 @@ from random import randint
 turn = 0
 clicked = []
 correct_clicked = []
+
 
 def random_question(request):
     global turn, clicked, correct_clicked
@@ -20,6 +21,16 @@ def random_question(request):
         "show":False
     }
     return render(request, "question/single_question.html", context)
+
+def check_user(request: HttpRequest):
+    if request.user.id != None:
+        user: bool = PersonModel.objects.filter(user__exact=request.user).exists()
+    else:
+        user: bool = False
+    if user:
+        return render(request, "question/done_error.html")
+    else:
+        return random_question(request)
 
 def question(request, id):
     global turn
@@ -73,6 +84,11 @@ def show_result(request):
     new_personModel.save()
     return render(request, "question/result.html", context)
 
+
+def deletePersonModel(request):
+    user: PersonModel = PersonModel.objects.filter(user__exact=request.user).first()
+    user.delete()
+    return random_question(request)
 
 #  -------------- TOOLS :
 

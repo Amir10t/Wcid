@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, reverse
+from django.template.context_processors import request
 from django.views.generic import View
+from .models import PersonModel
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from .forms import RegisterForm, LoginForm
@@ -84,3 +86,20 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect(reverse('question'))
+
+class UserPannelView(View):
+    def get(self, request: HttpRequest):
+        if request.user.id != None:
+            user: User = User.objects.filter(email__iexact=request.user.email).first()
+            person_model: PersonModel = PersonModel.objects.filter(user_id__exact=request.user.id).first()
+            context = {
+                "user":user,
+                "person_model":person_model
+            }
+            return render(request, "user/user_pannel.html", context)
+        else:
+            login_form = RegisterForm()
+            context = {
+                "login_form": login_form
+            }
+            return render(request, "user/login.html", context)

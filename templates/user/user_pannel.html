@@ -1,0 +1,16 @@
+{% extends "shared/blank.html" %}
+
+{% block title %}
+    پنل کاربری
+{% endblock %}
+
+{% block content %}
+    {% if user.first_name == "" %}
+        <a href="#">اضافه کردن نام و نام خانوادگی</a>
+    {% else %}
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+    {% endif %}
+    <h3>{{ user.email }}</h3>
+    <h3>{{ person_model.ability }}</h3>
+    <h3>{{ person_model.favorite }}</h3>
+{% endblock %}
