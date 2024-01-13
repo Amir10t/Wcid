@@ -377,3 +377,11 @@ input {
         -o-transform: scale(1);
     }
 }
+
+/* ----------------------------------------------------------------- */
+.txt-userpannel {
+    text-align: center;
+}
+.hr-userpannel {
+    width: 25%;
+}

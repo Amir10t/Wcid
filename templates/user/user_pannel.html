@@ -5,12 +5,21 @@
 {% endblock %}
 
 {% block content %}
+    <br><br><br><br><br>
     {% if user.first_name == "" %}
-        <a href="#">اضافه کردن نام و نام خانوادگی</a>
+        <div class="txt-userpannel"><a href="#"> نام و نام خانوادگی : اضافه کردن نام و نام خانوادگی</a></div>
+        <hr class="hr-userpannel">
     {% else %}
-        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <h3 class="txt-userpannel">{{ user.first_name }} {{ user.last_name }}</h3>
+        <hr class="hr-userpannel">
     {% endif %}
-    <h3>{{ user.email }}</h3>
-    <h3>{{ person_model.ability }}</h3>
-    <h3>{{ person_model.favorite }}</h3>
+    <h3 class="txt-userpannel">{{ user.email }} : ایمیل </h3>
+    {% if person_model.ability != None %}
+        <hr class="hr-userpannel">
+        <h3 class="txt-userpannel">توانایی :  {{ person_model.ability }}</h3>
+    {% endif %}
+    {% if person_model.favorite != None %}
+         <hr class="hr-userpannel">
+        <h3 class="txt-userpannel"> علاقه : {{ person_model.favorite }}</h3>
+    {% endif %}
 {% endblock %}

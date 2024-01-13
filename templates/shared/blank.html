@@ -16,7 +16,7 @@
                 <a class="admin" href="/admin"><i></i> پنل ادمین</a>
             {% endif %}
             <a class="split logout" href="{% url 'logout-page' %}">خروج</a>
-            <a class="split" href="#"> پنل کاربری</a>
+            <a class="split" href="{% url "user-pannel" %}"> پنل کاربری</a>
         {% else %}
             <a class="split" href="{% url "register" %}">ثبت نام</a>
             <a class="split" href="#">/</a>
