@@ -5,6 +5,94 @@ li {
 }
 
 /* --------------------------------------- */
+html {
+    font-size: 100%;
+    font-family: "Vazir";
+}
+
+.slide-text,
+.footer {
+    font-size: 1.2rem;
+}
+
+.slide-text {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    /* height: 20rem; */
+}
+
+.slideshow {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    margin-left: 1rem;
+}
+
+.slideshow p {
+    padding: 0 .2rem;
+}
+
+.text-btn {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    background-color: #eee;
+    /* height: calc(20rem - 50%); */
+    width: 74%;
+    margin-bottom: 1.4rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    width: 74%;
+    /* height: calc(20rem - 50%); */
+    #background-color: #eee;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn button {
+    width: 60%;
+    height: 3rem;
+}
+
+.text2 {
+    width: calc(100% - 2rem);
+    background-color: #eee;
+    /* height: 20rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 1rem 0;
+}
+
+.text2 p {
+    padding: 0 .4rem;
+    text-align: right;
+}
+
+.footer {
+    width: 100%;
+    height: 10rem;
+    /*background-color: #eee;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+/* --------------------------------------- */
 .topnav {
     overflow: hidden;
 }
