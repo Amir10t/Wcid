@@ -6,6 +6,6 @@
     <h1 style="color: red;text-align: center">هشدار</h1>
     <pre id="text-result">شما یک ازمون داده اید و نتیجه ی ان مشخص شده است ایا اطمینان دارید که میخواهید
     نتیجه ی قبلی حذف و دوباره ازمون دهید؟</pre>
-    <button class="btn-result" style="background-color: lightgreen"><a href="#">بازگشت به صفحه ی اصلی</a></button>
+    <button class="btn-result" style="background-color: lightgreen"><a href="{% url "home-page" %}">بازگشت به صفحه ی اصلی</a></button>
     <button class="btn-result" style="background-color: red"><a href="{% url "deletePersonModel" %}">آزمون مجدد</a></button>
 {% endblock %}

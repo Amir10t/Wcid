@@ -10,7 +10,7 @@ clicked = []
 correct_clicked = []
 
 
-def random_question(request):
+def random_question(request): #یک سوال تصادفی میده
     global turn, clicked, correct_clicked
     turn = 0
     clicked, correct_clicked = [], []
@@ -22,7 +22,7 @@ def random_question(request):
     }
     return render(request, "question/single_question.html", context)
 
-def check_user(request: HttpRequest):
+def check_user(request: HttpRequest): # کاربر رو برای ازمون دادن چک میکنه
     if request.user.id != None:
         user: bool = PersonModel.objects.filter(user__exact=request.user).exists()
     else:
@@ -32,7 +32,7 @@ def check_user(request: HttpRequest):
     else:
         return random_question(request)
 
-def question(request, id):
+def question(request, id): # سول ها رو بر اساس ای دی دریافتی میده
     global turn
     questions = QuestionModel.objects.all()
     question=questions.get(id=id)
@@ -42,27 +42,26 @@ def question(request, id):
     }
     return render(request, "question/single_question.html", context)
 
-def check(request, id, option):
+def check(request, id, option): # جواب کاربر رو بررسی میکنه
     global turn
     questions = QuestionModel.objects.all()
     question=questions.filter(id=id).first()
-    if option == int(question.correct_answer):
-        turn += 1
-        clicked.append(question.category)
+    if option == int(question.correct_answer): # اگر پاسخ کاربر درست باشه
         correct_clicked.append(question.category)
-        return HttpResponse(f"{clicked} ----- {correct_clicked}")
-    elif option == 5:
+    elif option == 5: # سوال دیگر از دسته بندی دیگر میده
         new_question = questions[randint(0,(len(questions)-1))]
         while new_question.category == question.category:
             new_question = questions[randint(0, (len(questions) - 1))]
-    else:
-        turn += 1
-        clicked.append(question.category)
-        new_question = find_question(question)
+        url_question = reverse("single-question", args=[new_question.id])
+        return redirect(url_question)
+
+    turn += 1
+    clicked.append(question.category)
+    new_question = find_question(question)
     url_question = reverse("single-question",args=[new_question.id])
     return redirect(url_question)
 
-def show_result(request):
+def show_result(request): # نتیجه ی ازمون رو نمایش میده
     if clicked == []: # جلوگیری از ارور
         favorite = "نامعلوم"
     else:
@@ -85,7 +84,7 @@ def show_result(request):
     return render(request, "question/result.html", context)
 
 
-def deletePersonModel(request):
+def deletePersonModel(request): # حذف کردن نتیجه ی ازمون قبلی کاربر
     user: PersonModel = PersonModel.objects.filter(user__exact=request.user).first()
     user.delete()
     return random_question(request)

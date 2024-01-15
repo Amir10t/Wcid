@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="#home">خانه</a>
-        <a href="#contact">ارتباط با ما</a>
-        <a href="#about">درباره ی ما</a>
+        <a class="active" href="{% url "home-page" %}">خانه</a>
+{#        <a href="#contact">ارتباط با ما</a>#}
+{#        <a href="#about">درباره ی ما</a>#}
         {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
                 <a class="admin" href="/admin"><i></i> پنل ادمین</a>
