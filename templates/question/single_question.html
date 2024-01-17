@@ -9,7 +9,7 @@
         <button class="answer"><a href="{% url "check-question" id=quiz.id option=2 %}">{{ quiz.option2 }}</a></button>
         <button class="answer"><a href="{% url "check-question" id=quiz.id option=3 %}">{{ quiz.option3 }}</a></button>
         <button class="answer"><a href="{% url "check-question" id=quiz.id option=4 %}">{{ quiz.option4 }}</a></button>
-        <button id="skip"><a href="{% url "check-question" id=quiz.id option=5 %}">علاقه ای به {{ quiz.category.title }} ندارم</a></button>
+        <button id="skip"><a href="{% url "check-question" id=quiz.id option=5 %}">نمی خواهم به سوالات {{ quiz.category }} جواب دهم</a></button>
         {% if show %}
                 <button id="show-btn"><a href="{% url "show-result" %}">نمایش نتیجه</a></button>
         {% endif %}
