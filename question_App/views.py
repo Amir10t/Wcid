@@ -89,6 +89,10 @@ def deletePersonModel(request): # حذف کردن نتیجه ی ازمون قب�
     user.delete()
     return random_question(request)
 
+def test_guide(request): #نشون دادن صفحه ی راهنمای ازمون
+    context = {}
+    return render(request, "question/test_guide.html", context)
+
 #  -------------- TOOLS :
 
 def find_question(question:QuestionModel): # یک سوال بهش میدی و یک سوال دیگه بهت از همون شاخه میده
