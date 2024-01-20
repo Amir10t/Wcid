@@ -20,7 +20,7 @@ class QuestionModel(models.Model):
         "3": "3",
         "4": "4"
     }
-    question = models.CharField(max_length=300, verbose_name="سوال")
+    question = models.TextField(max_length=300, verbose_name="سوال")
     option1 = models.CharField(max_length=200, verbose_name="گزینه 1")
     option2 = models.CharField(max_length=200, verbose_name="گزینه 2")
     option3 = models.CharField(max_length=200, verbose_name="گزینه 3")
