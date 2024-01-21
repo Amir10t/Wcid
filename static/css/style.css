@@ -5,6 +5,7 @@ li {
 }
 
 /* --------------------------------------- */
+/* Home Page */
 html {
     font-size: 100%;
     font-family: "Vazir";
@@ -93,6 +94,7 @@ html {
     margin-top: 1rem;
 }
 /* --------------------------------------- */
+/* Navbar */
 .topnav {
     overflow: hidden;
 }
@@ -126,6 +128,7 @@ html {
     color: mediumpurple;
 }
 /* --------------------------------------- */
+/* Question Page */
 
 * {font-family: Vazir;box-sizing: border-box;}
 
@@ -224,6 +227,7 @@ body {
     color: darkgray;
 }
 /* ----------------------------------------------------------------- */
+/* Result Page */
 #head-result {
     text-align: center;
 }
@@ -255,6 +259,7 @@ body {
     color: darkgray;
 }
 /* ----------------------------------------------------------------- */
+/* Login And Register Page */
 
 :root {
     --color: #000000;
@@ -467,6 +472,7 @@ input {
 }
 
 /* ----------------------------------------------------------------- */
+/* UserPannel Page */
 .txt-userpannel {
     text-align: center;
 }
