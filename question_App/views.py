@@ -44,7 +44,7 @@ def question(request, id): # سول ها رو بر اساس ای دی دریاف
 
 def check(request, id, option): # جواب کاربر رو بررسی میکنه
     global turn
-    questions = QuestionModel.objects.all()
+    questions = QuestionModel.objects.filter(is_active=True)
     question=questions.filter(id=id).first()
     if option == int(question.correct_answer): # اگر پاسخ کاربر درست باشه
         correct_clicked.append(question.category)
@@ -96,7 +96,7 @@ def test_guide(request): #نشون دادن صفحه ی راهنمای ازمو�
 #  -------------- TOOLS :
 
 def find_question(question:QuestionModel): # یک سوال بهش میدی و یک سوال دیگه بهت از همون شاخه میده
-    temmate = QuestionModel.objects.filter(category=question.category)
+    temmate = QuestionModel.objects.filter(category=question.category, is_active=True)
     new_question = temmate[randint(0,(len(temmate)-1))]
     while new_question == question:
         new_question = temmate[randint(0,(len(temmate)-1))]
