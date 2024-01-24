@@ -7,24 +7,31 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <div class="topnav">
-        <a class="active" href="{% url "home-page" %}">خانه</a>
-        <a class="" href="{% url "test-guide" %}">راهنمای آزمون</a>
-{#        <a href="#contact">ارتباط با ما</a>#}
-{#        <a href="#about">درباره ی ما</a>#}
-        {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser %}
-                <a class="admin" href="/admin"><i></i> پنل ادمین</a>
-            {% endif %}
-            <a class="split" href="{% url "user-pannel" %}"> پنل کاربری</a>
-            <a class="split logout" href="{% url 'logout-page' %}">خروج</a>
-        {% else %}
-            <a class="split" href="{% url "register" %}">ثبت نام</a>
-            <a class="split" href="#">/</a>
-            <a class="split" href="{% url "login-page" %}">ورود</a>
-        {% endif %}
-    </div>
+    <div class="screen">
 
-    {% block content %}{% endblock %}
+        <div class="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+    </div>
+        <div class="topnav">
+            <a class="active" href="{% url "home-page" %}">خانه</a>
+            <a class="" href="{% url "test-guide" %}">راهنمای آزمون</a>
+    {#        <a href="#contact">ارتباط با ما</a>#}
+    {#        <a href="#about">درباره ی ما</a>#}
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a class="admin" href="/admin"><i></i> پنل ادمین</a>
+                {% endif %}
+                <a class="split" href="{% url "user-pannel" %}"> پنل کاربری</a>
+                <a class="split logout" href="{% url 'logout-page' %}">خروج</a>
+            {% else %}
+                <a class="split" href="{% url "register" %}">ثبت نام</a>
+                <a class="split" href="#">/</a>
+                <a class="split" href="{% url "login-page" %}">ورود</a>
+            {% endif %}
+        </div>
+        {% block content %}{% endblock %}
 </body>
 </html>
