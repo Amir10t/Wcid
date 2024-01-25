@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -24,8 +25,15 @@
                 {% if request.user.is_superuser %}
                     <a class="admin" href="/admin"><i></i> پنل ادمین</a>
                 {% endif %}
-                <a class="split" href="{% url "user-pannel" %}"> پنل کاربری</a>
-                <a class="split logout" href="{% url 'logout-page' %}">خروج</a>
+                    <div class="dropdown">
+                      <button class="dropbtn"><i class="fa fa-fw fa-user"></i></button>
+                      <div class="dropdown-content">
+                        <a href="{% url "user-pannel" %}"> پنل کاربری</a>
+                        <a class="logout" href="{% url 'logout-page' %}">خروج</a>
+                      </div>
+                    </div>
+{#                <a class="split" href="{% url "user-pannel" %}"> پنل کاربری</a>#}
+{#                <a class="split logout" href="{% url 'logout-page' %}">خروج</a>#}
             {% else %}
                 <a class="split" href="{% url "register" %}">ثبت نام</a>
                 <a class="split" href="#">/</a>
