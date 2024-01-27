@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
-    <title>صفحه ورود به حساب کاربری</title>
+    <title>تغییر نام</title>
 </head>
 <body id="register">
         <section class="container">
             <div class="login-container">
                 <div class="circle circle-one"></div>
                     <div class="form-container">
-                        <h1 class="opacity">خوش برگشتید</h1>
-                        <form  method="post" action="{% url "login-page" %}">
+                        <h1 class="opacity">تغییر نام</h1>
+                        <form  method="post" action="{% url "edit-fullname" %}">
                             {% csrf_token %}
-                            {{ login_form.email }}
-                            {{ login_form.email.errors }}
-                            {{ login_form.password }}
-                            {{ login_form.password.errors }}
-                            <button type="submit" class="opacity" style="background-color: red">وارد شو</button>
+                            {{ edit_fullname_form.first_name }}
+                            {{ edit_fullname_form.first_name.errors }}
+                            {{ edit_fullname_form.last_name }}
+                            {{ edit_fullname_form.last_name.errors }}
+                            <button type="submit" class="opacity" style="background-color: deeppink">برو</button>
                         </form>
                         <div class="register-forget opacity">
-                            <a href="{% url "register" %}">ثبت نام</a>
                             <a href="">به مشکلی بر خورده اید؟</a>
                         </div>
                 </div>

@@ -54,3 +54,21 @@ class LoginForm(forms.Form):
             validators.MaxLengthValidator(100),
         ]
     )
+
+class EditFullnameForm(forms.Form):
+    first_name = forms.CharField(
+        label='نام',
+        widget=forms.TextInput(attrs={'placeholder': 'نام'}),
+        validators=[
+            validators.MaxLengthValidator(50),
+            validators.EmailValidator,
+            validators.validate_email
+        ]
+    )
+    last_name = forms.CharField(
+        label='نام خانوادگی',
+        widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}),
+        validators=[
+            validators.MaxLengthValidator(50),
+        ]
+    )

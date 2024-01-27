@@ -1,10 +1,11 @@
+import msvcrt
+
 from django.shortcuts import render, redirect, reverse
-from django.template.context_processors import request
 from django.views.generic import View
 from .models import PersonModel
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, EditFullnameForm
 from django.http import HttpRequest, HttpResponse
 
 # Create your views here.
@@ -103,3 +104,36 @@ class UserPannelView(View):
                 "login_form": login_form
             }
             return render(request, "user/login.html", context)
+
+
+class EditFullnameView(View):
+    def get(self, request: HttpRequest):
+        if request.user.id != None:
+            edit_fullname_form = EditFullnameForm()
+            context = {
+                "edit_fullname_form": edit_fullname_form
+            }
+            return render(request, "user/editFullname.html", context)
+        else:
+            login_form = RegisterForm()
+            context = {
+                "login_form": login_form
+            }
+            return render(request, "user/login.html", context)
+    def post(self, request: HttpRequest):
+        edit_fullname_form = EditFullnameForm(request.POST)
+        if edit_fullname_form.is_valid():
+            user: User = User.objects.filter(email__iexact=request.user.email).first()
+            first_name = edit_fullname_form.cleaned_data.get('first_name')
+            last_name = edit_fullname_form.cleaned_data.get('last_name')
+            user.first_name = first_name
+            user.last_name  = last_name
+            user.save()
+
+            return redirect(reverse("user-pannel"))
+
+        edit_fullname_form = EditFullnameForm()
+        context = {
+            "edit_fullname_form": edit_fullname_form
+        }
+        return render(request, "user/editFullname.html", context)
