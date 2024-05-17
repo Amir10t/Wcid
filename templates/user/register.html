@@ -7,6 +7,9 @@
     <title>صفحه ساخت حساب کاربری</title>
 </head>
 <body id="register">
+        {% if request.user.is_authenticated %}
+            <h1 id="error-message" style="margin-top: 20%">کاربر گرامی شما در حال حاضر لاگین هستید و حساب کاربری دارید!</h1>
+        {% else %}
         <section class="container">
             <div class="login-container">
                 <div class="circle circle-one"></div>
@@ -34,5 +37,6 @@
                 </div>
                 <div class="theme-btn-container"></div>
         </section>
+        {% endif %}
 </body>
 </html>

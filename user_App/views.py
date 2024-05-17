@@ -1,5 +1,3 @@
-import msvcrt
-
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 from .models import PersonModel
@@ -28,16 +26,8 @@ class RegisterView(View):
             user: bool = User.objects.filter(email__iexact=user_email).exists()
             if user:
                 register_form.add_error('email', 'ایمیل وارد شده تکراری می باشد')
-                context = {
-                    "register_form": register_form
-                }
-                return render(request, "user/register.html", context)
             elif match_password:
                 register_form.add_error('confirm_password', 'گذرواژه با تکرارش مطابقت ندارد')
-                context = {
-                    "register_form": register_form
-                }
-                return render(request, "user/register.html", context)
             else:
                 new_user = User(
                     email=user_email,
@@ -47,7 +37,6 @@ class RegisterView(View):
                 new_user.save()
                 return redirect(reverse("login-page"))
 
-        register_form = RegisterForm()
         context = {
             "register_form":register_form
         }
@@ -55,7 +44,7 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request):
-        login_form = RegisterForm()
+        login_form = LoginForm()
         context = {
             "login_form":login_form
         }
@@ -71,7 +60,7 @@ class LoginView(View):
                 is_password_correct = user.check_password(user_password)
                 if is_password_correct:
                     login(request, user)
-                    return redirect(reverse('question'))
+                    return redirect(reverse('home-page'))
                 else:
                     login_form.add_error('email', 'کلمه عبور اشتباه است')
             else:
@@ -80,13 +69,12 @@ class LoginView(View):
         context = {
             'login_form': login_form
         }
-
         return render(request, 'user/login.html', context)
 
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect(reverse('question'))
+        return redirect(reverse('home-page'))
 
 class UserPannelView(View):
     def get(self, request: HttpRequest):
@@ -99,11 +87,7 @@ class UserPannelView(View):
             }
             return render(request, "user/user_pannel.html", context)
         else:
-            login_form = RegisterForm()
-            context = {
-                "login_form": login_form
-            }
-            return render(request, "user/login.html", context)
+            return redirect(reverse("login-page"))
 
 
 class EditFullnameView(View):
@@ -115,11 +99,8 @@ class EditFullnameView(View):
             }
             return render(request, "user/editFullname.html", context)
         else:
-            login_form = RegisterForm()
-            context = {
-                "login_form": login_form
-            }
-            return render(request, "user/login.html", context)
+            return redirect(reverse("login-page"))
+
     def post(self, request: HttpRequest):
         edit_fullname_form = EditFullnameForm(request.POST)
         if edit_fullname_form.is_valid():
@@ -127,12 +108,11 @@ class EditFullnameView(View):
             first_name = edit_fullname_form.cleaned_data.get('first_name')
             last_name = edit_fullname_form.cleaned_data.get('last_name')
             user.first_name = first_name
-            user.last_name  = last_name
+            user.last_name = last_name
             user.save()
 
             return redirect(reverse("user-pannel"))
 
-        edit_fullname_form = EditFullnameForm()
         context = {
             "edit_fullname_form": edit_fullname_form
         }

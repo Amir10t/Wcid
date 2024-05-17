@@ -61,8 +61,6 @@ class EditFullnameForm(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'نام'}),
         validators=[
             validators.MaxLengthValidator(50),
-            validators.EmailValidator,
-            validators.validate_email
         ]
     )
     last_name = forms.CharField(
