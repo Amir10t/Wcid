@@ -7,7 +7,7 @@
 {% block content %}
     <br><br><br><br><br>
     {% if user.first_name == "" %}
-        <div class="txt-userpannel"><a href="#"> نام و نام خانوادگی : اضافه کردن نام و نام خانوادگی</a></div>
+        <div class="txt-userpannel"><a href="{% url "edit-fullname" %}"> نام و نام خانوادگی : اضافه کردن نام و نام خانوادگی</a></div>
         <hr class="hr-userpannel">
     {% else %}
         <h3 class="txt-userpannel">{{ user.first_name }} {{ user.last_name }}</h3>

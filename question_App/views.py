@@ -7,13 +7,16 @@ from random import randint
 # مقادیر
 turn = 0
 clicked = []
+clicked_id = []
+clicked_len = 0
 correct_clicked = []
 
 
 def random_question(request): #یک سوال تصادفی میده
-    global turn, clicked, correct_clicked
+    global turn, clicked, correct_clicked, clicked_id, clicked_len
     turn = 0
     clicked, correct_clicked = [], []
+    clicked_id, clicked_len = [], 0
     questions = QuestionModel.objects.all()
     question = questions[randint(0,(len(questions)-1))]
     context = {
@@ -43,13 +46,14 @@ def question(request, id): # سول ها رو بر اساس ای دی دریاف
     return render(request, "question/single_question.html", context)
 
 def check(request, id, option): # جواب کاربر رو بررسی میکنه
-    global turn
+    global turn, clicked_len
     questions = QuestionModel.objects.filter(is_active=True)
     question=questions.filter(id=id).first()
     if option == int(question.correct_answer): # اگر پاسخ کاربر درست باشه
         correct_clicked.append(question.category)
     elif option == 5: # سوال دیگر از دسته بندی دیگر میده
         new_question = questions[randint(0,(len(questions)-1))]
+        clicked_len = 0
         while new_question.category == question.category:
             new_question = questions[randint(0, (len(questions) - 1))]
         url_question = reverse("single-question", args=[new_question.id])
@@ -57,6 +61,8 @@ def check(request, id, option): # جواب کاربر رو بررسی میکنه
 
     turn += 1
     clicked.append(question.category)
+    clicked_len += 1
+    clicked_id.append(question.id)
     new_question = find_question(question)
     url_question = reverse("single-question",args=[new_question.id])
     return redirect(url_question)
@@ -96,10 +102,18 @@ def test_guide(request): #نشون دادن صفحه ی راهنمای ازمو�
 #  -------------- TOOLS :
 
 def find_question(question:QuestionModel): # یک سوال بهش میدی و یک سوال دیگه بهت از همون شاخه میده
+    global clicked_len
     temmate = QuestionModel.objects.filter(category=question.category, is_active=True)
     new_question = temmate[randint(0,(len(temmate)-1))]
-    while new_question == question:
-        new_question = temmate[randint(0,(len(temmate)-1))]
+    while new_question == question or new_question.id in clicked_id:
+        if clicked_len == len(temmate):
+            clicked_len = 0
+            questions = QuestionModel.objects.filter(is_active=True)
+            new_question = questions[randint(0, (len(questions) - 1))]
+            while new_question == question or new_question.id in clicked_id:
+                new_question = questions[randint(0, (len(questions) - 1))]
+        else:
+            new_question = temmate[randint(0,(len(temmate)-1))]
     return new_question
 
 
