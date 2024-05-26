@@ -10,6 +10,7 @@ clicked = []
 clicked_id = []
 clicked_len = 0
 correct_clicked = []
+questions = QuestionModel.objects.filter(is_active=True)
 
 
 def random_question(request): #یک سوال تصادفی میده
@@ -17,7 +18,7 @@ def random_question(request): #یک سوال تصادفی میده
     turn = 0
     clicked, correct_clicked = [], []
     clicked_id, clicked_len = [], 0
-    questions = QuestionModel.objects.all()
+    # questions = QuestionModel.objects.all()
     question = questions[randint(0,(len(questions)-1))]
     context = {
         "quiz": question,
@@ -37,7 +38,7 @@ def check_user(request: HttpRequest): # کاربر رو برای ازمون دا
 
 def question(request, id): # سول ها رو بر اساس ای دی دریافتی میده
     global turn
-    questions = QuestionModel.objects.all()
+    # questions = QuestionModel.objects.all()
     question=questions.get(id=id)
     context = {
         "quiz":question,
@@ -47,7 +48,7 @@ def question(request, id): # سول ها رو بر اساس ای دی دریاف
 
 def check(request, id, option): # جواب کاربر رو بررسی میکنه
     global turn, clicked_len
-    questions = QuestionModel.objects.filter(is_active=True)
+    # questions = QuestionModel.objects.filter(is_active=True)
     question=questions.filter(id=id).first()
     if option == int(question.correct_answer): # اگر پاسخ کاربر درست باشه
         correct_clicked.append(question.category)
@@ -108,7 +109,7 @@ def find_question(question:QuestionModel): # یک سوال بهش میدی و ی
     while new_question == question or new_question.id in clicked_id:
         if clicked_len == len(temmate):
             clicked_len = 0
-            questions = QuestionModel.objects.filter(is_active=True)
+            # questions = QuestionModel.objects.filter(is_active=True)
             new_question = questions[randint(0, (len(questions) - 1))]
             while new_question == question or new_question.id in clicked_id:
                 new_question = questions[randint(0, (len(questions) - 1))]
