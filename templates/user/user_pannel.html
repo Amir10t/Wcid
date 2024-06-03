@@ -10,7 +10,7 @@
         <div class="txt-userpannel"><a href="{% url "edit-fullname" %}"> نام و نام خانوادگی : اضافه کردن نام و نام خانوادگی</a></div>
         <hr class="hr-userpannel">
     {% else %}
-        <h3 class="txt-userpannel">{{ user.first_name }} {{ user.last_name }}</h3>
+        <h3 class="txt-userpannel"><a href="{% url "edit-fullname" %}">{{ user.first_name }} {{ user.last_name }}</a></h3>
         <hr class="hr-userpannel">
     {% endif %}
     <h3 class="txt-userpannel">{{ user.email }} : ایمیل </h3>
